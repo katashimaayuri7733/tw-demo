@@ -11,25 +11,24 @@
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-Route::get('/', 'UserController@index');
 
-Route::get('/model/create', 'UserController@create')->name('usermodelCreate');
+//index  トップページなどを作る時に使う方が綺麗　　　インデックスの意味を調べればわかる
+Auth::routes();
+//トップページ
+// Homeコントローラー
+Route::get('/','HomeController@index');
 
-Route::post('/model/store', 'UserController@store');
+// //ツイート保存
+// Tweetコントローラー
+Route::post('/tweet','TweetController@update');
 
-Route::get('/model/edit/{id}', 'UserController@edit');
+// // ユーザー一覧
+// Userコントローラー
+Route::get('/users', 'UserController@index')->name('user_list');
 
-Route::post('/model/update', 'UserController@update');
+// // フォローを実行する
+// Userコントローラー
+Route::post('/users/follow','UserController@follow');
 
-//Route::get('/model/delete/{id}', 'UserController@delete');
-
-Route::post('/model/delete', 'UserController@delete');
-
-Route::post('/model/copy', 'UserController@copy');
-
-
-
+Route::get('/home', 'HomeController@index')->name('home');
 
