@@ -34,12 +34,16 @@ class UserController extends Controller
 
 
   public function unfollow(Request $request){
+    //(Request $request)はformで送られてきた情報を$requestをつかうことによって扱えるようにする。
 
 
-    $follow->user_id = Auth::id();
-    $follow->follow_id = $request->input('followId');
 
-    // Follow::where('user_id',$)->where('follow_id',$ページでクリックされたユーザーのID)->delete();
+
+    $unfollow = Follow::where('user_id',Auth::id())->where('follow_id',$request->followId);
+    $unfollow->delete();
+
+//Follw
+    //第二  ログインユーザーid                     第二  フォローユーザーのid
 
     return redirect()->route('user_list');
 
