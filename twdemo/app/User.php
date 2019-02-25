@@ -49,6 +49,11 @@ public function follows()
     //usersのid（第3引数）をfollow_id（第二引数）にひも付けたい
 
 }
+
+public function unfollws()
+{
+    return $this->hasMany('App\Follow','follow_id','id');
+}
 }
 
 
