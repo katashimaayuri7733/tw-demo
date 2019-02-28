@@ -39,6 +39,16 @@ class TweetController extends Controller
     return redirect()->route('home');
 //     Tweet::all();  //テーブルの情報を全て持ってくる　　ここでのテーブルはTweet
   }
+
+  public function tweetsdelete(Request $request)
+  {
+$delete_tweet = Tweet::where('user_id',Auth::id())->where('id',$request->tweetId);
+    $delete_tweet->delete();
+
+    $delete_comment =
+
+    return redirect()->route('user_list');
+  }
 }
 
 

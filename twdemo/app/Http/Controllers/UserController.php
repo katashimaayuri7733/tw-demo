@@ -7,15 +7,28 @@ use Illuminate\Http\Request;//Illuminate\Httpパッケージ内にあるrequest�
 use App\User;
 use App\Follow;
 use Illuminate\Support\Facades\Auth;
+
 class UserController extends Controller
 {
   public function index(){
     $my_user = User::getTLUser();
-    return view('user.list',['users'=>$my_user]);
+
+    $login_user = User::find(Auth::id());
 
 //dd('きのみ');
     //ユーザーidをログインユーザー以外全員取ってきたい
-  }
+
+    // 「followsテーブルのuser_idカラムにログインユーザーのidが入ってるやつ」
+    // 「かつ、follow_idに何かしら値が入ってるやつ」
+    // があれば1を返す
+    $follow_list = [];
+    foreach ($login_user->follows as $value) {
+      $follow_list[ $value->follow_id ] = '1';
+      }
+      return view('user.list',['users'=>$my_user,'follow_list'=>$follow_list]);
+      # code...
+
+   }
 
   public function follow(Request $request) {
     //user_idがfollow_idをフォローする
@@ -35,9 +48,6 @@ class UserController extends Controller
 
   public function unfollow(Request $request){
     //(Request $request)はformで送られてきた情報を$requestをつかうことによって扱えるようにする。
-
-
-
 
     $unfollow = Follow::where('user_id',Auth::id())->where('follow_id',$request->followId);
     $unfollow->delete();

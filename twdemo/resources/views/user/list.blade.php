@@ -16,9 +16,11 @@
 
           <div style="float:right">
 
-            @if (count($user->follows) == 0)
+            <?php
+            // @if (isset($followsテーブルのuser_idカラムにログインユーザーのidが入ってるレコード[さらにその中からfollow_idが$user->idのレコード])) ?>
+            @if( !isset($follow_list[$user->id]))
 
-            <form method="POST" action="/users/follow" accept-charset="UTF-8" id="formTweet" enctype="multipart/form-data">
+            <form method="POST" action="/users/follow" >
 
               <input id="followId" name="followId" type="hidden" value="{{ $user->id }}">
 

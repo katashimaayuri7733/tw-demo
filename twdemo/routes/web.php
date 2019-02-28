@@ -34,6 +34,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::post('/unfollow','UserController@unfollow');
 
+Route::post('/tweet/delete','TweetController@tweetsdelete');
+
 
 
 
