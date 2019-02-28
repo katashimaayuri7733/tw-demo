@@ -45,9 +45,7 @@ class TweetController extends Controller
 $delete_tweet = Tweet::where('user_id',Auth::id())->where('id',$request->tweetId);
     $delete_tweet->delete();
 
-    $delete_comment =
-
-    return redirect()->route('user_list');
+    return redirect()->route('home');
   }
 }
 

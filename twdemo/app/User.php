@@ -45,15 +45,15 @@ public static function getTLUser(){
 
 public function follows()
 {
-    return $this->hasMany('App\Follow','follow_id','id');//$this はインスタンス化された　　自分
+    return $this->hasMany('App\Follow','user_id','id');//$this はインスタンス化された　　自分
     //usersのid（第3引数）をfollow_id（第二引数）にひも付けたい
 
 }
+// public function unfollws()
+// {
+//     return $this->hasMany('App\Follow','follow_id','id');
+// }
 
-public function unfollws()
-{
-    return $this->hasMany('App\Follow','follow_id','id');
-}
 }
 
 

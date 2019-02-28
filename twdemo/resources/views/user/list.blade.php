@@ -19,6 +19,7 @@
             <?php
             // @if (isset($followsテーブルのuser_idカラムにログインユーザーのidが入ってるレコード[さらにその中からfollow_idが$user->idのレコード])) ?>
             @if( !isset($follow_list[$user->id]))
+            <!-- !は効果を反対にする -->
 
             <form method="POST" action="/users/follow" >
 
